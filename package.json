@@ -17,6 +17,7 @@
   "repository": {},
   "devDependencies": {
     "gulp": "^3.8.7",
+    "gulp-rimraf": "^0.1.0",
     "gulp-util": "^3.0.0",
     "jsx-loader": "^0.11.0",
     "karma": "^0.12.22",

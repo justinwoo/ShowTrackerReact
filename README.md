@@ -15,7 +15,7 @@ TBD
 http://kimagure.github.io/ShowTrackerReact/
 
 ## Contribution
-Trello board: https://trello.com/b/DeCHkvL3/showtrackerreact
+Tasks: https://trello.com/b/DeCHkvL3/showtrackerreact
 
 Issues: here on GitHub
 
