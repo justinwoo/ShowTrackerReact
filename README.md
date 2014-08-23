@@ -1,18 +1,22 @@
 ShowTrackerReact
 ================
 
-show tracker in React using Flux
+Show Tracker App in React using Flux architecture
 
 ## Setup
 `npm install`
 
-`gulp` (run twice because i haven't fixed the build process yet)
+TBD
 
 ## Run
-`open index.html`
+TBD
 
-## Demo
+## Demo (from gh-pages)
 http://kimagure.github.io/ShowTrackerReact/
 
-## Disclaimer
-Not an actual use application, see [ShowTracker Ember](kimagure.github.io/ShowTrackerEmberApp) for a usable application.
+## Contribution
+Trello board: https://trello.com/b/DeCHkvL3/showtrackerreact
+
+Issues: here on GitHub
+
+PRs: here on GitHub

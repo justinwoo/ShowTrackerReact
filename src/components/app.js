@@ -14,5 +14,6 @@ var App = React.createClass({
     /*jshint ignore:end  */
   }
 });
+console.log('App definition: ', App);
 
 module.exports = App;
