@@ -1,4 +1,4 @@
-ShowTrackerReact
+ShowTrackerReact [![Build Status](https://travis-ci.org/kimagure/ShowTrackerReact.svg?branch=master)](https://travis-ci.org/kimagure/ShowTrackerReact)
 ================
 
 Show Tracker App in React using Flux architecture
