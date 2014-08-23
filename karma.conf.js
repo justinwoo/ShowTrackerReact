@@ -15,6 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      './dist/js/es5-shim.min.js',
+      './test/main.js'
     ],
 
 
