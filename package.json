@@ -10,8 +10,8 @@
     "react": "0.10.0"
   },
   "scripts": {
-    "test": "echo not done yet",
-    "pretest": "echo not done yet"
+    "test": "karma start --single-run",
+    "pretest": "gulp build"
   },
   "readme": "nothing to see here...",
   "repository": {},
