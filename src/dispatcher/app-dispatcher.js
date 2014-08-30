@@ -1,8 +1,7 @@
-var Dispatcher = require('./dispatcher');
+var copyProperties = require('react/lib/copyProperties');
+var Dispatcher = require('flux').Dispatcher;
 
-var merge = require('react/lib/merge');
-
-var AppDispatcher = merge(Dispatcher.prototype, {
+var AppDispatcher = copyProperties(new Dispatcher, {
 
   /**
    * A bridge function between the views and the dispatcher, marking the action
