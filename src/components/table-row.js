@@ -4,6 +4,14 @@ var AppActions = require('../actions/app-actions');
 
 var TableRow = React.createClass({
 
+  propTypes: {
+    show: React.PropTypes.shape({
+      id: React.PropTypes.string,
+      title: React.PropTypes.string,
+      episode: React.PropTypes.number
+    })
+  },
+
   handleDelete: function () {
     AppActions.deleteShow(this.props.show.id);
   },
@@ -13,10 +21,10 @@ var TableRow = React.createClass({
     var show = this.props.show;
 
     return (
-      <tr>
-        <td>{show.title}</td>
-        <td>{show.episode}</td>
-        <td><button onClick={this.handleDelete}>Delete</button></td>
+      <tr className="table-row">
+        <td className="show-title">{show.title}</td>
+        <td className="show-episode">{show.episode}</td>
+        <td className="show-delete"><button onClick={this.handleDelete}>Delete</button></td>
       </tr>
     );
     /*jshint ignore:end  */
