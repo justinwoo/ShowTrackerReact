@@ -4,7 +4,7 @@ var rimraf = require('gulp-rimraf');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 
-var SRC = './src';
+var SRC = './src/**/*.js';
 var DIST = './dist';
 var DIST_JS = './dist/js';
 var TEST_MAIN = './src/__tests__/main.js';
