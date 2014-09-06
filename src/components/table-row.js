@@ -6,7 +6,7 @@ var TableRow = React.createClass({
 
   propTypes: {
     show: React.PropTypes.shape({
-      id: React.PropTypes.string,
+      id: React.PropTypes.number,
       title: React.PropTypes.string,
       episode: React.PropTypes.number
     })

@@ -8,7 +8,7 @@ var tableRow;
 describe('TableRow', function () {
   beforeEach(function () {
     var myShow = {
-      id: '5',
+      id: 1,
       title: 'ゆゆ式',
       episode: 34
     };
@@ -25,7 +25,7 @@ describe('TableRow', function () {
   });
 
   it('has the correct content', function () {
-    expect(tableRow.props.show.id).toBe('5');
+    expect(tableRow.props.show.id).toBe(1);
     expect(tableRow.props.show.title).toBe('ゆゆ式');
     expect(tableRow.props.show.episode).toBe(34);
   });
