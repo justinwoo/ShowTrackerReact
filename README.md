@@ -4,12 +4,24 @@ ShowTrackerReact [![Build Status](https://travis-ci.org/kimagure/ShowTrackerReac
 Show Tracker App in React using Flux architecture
 
 ## Setup
+
+Install dependencies:
+
 `npm install`
 
-TBD
+Build using webpack via gulp:
 
-## Run
-TBD
+`gulp`
+
+Watch files for building:
+
+`gulp watch`
+
+## Test
+
+Run the `test` task to have `pretest` build the assets and test accordingly:
+
+`npm test`
 
 ## Demo (from gh-pages)
 http://kimagure.github.io/ShowTrackerReact/
