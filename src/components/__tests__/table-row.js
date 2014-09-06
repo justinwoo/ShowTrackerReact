@@ -29,5 +29,4 @@ describe('TableRow', function () {
     expect(tableRow.props.show.title).toBe('ゆゆ式');
     expect(tableRow.props.show.episode).toBe(34);
   });
-
 });

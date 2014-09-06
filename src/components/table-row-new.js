@@ -23,7 +23,11 @@ var TableRowNew = React.createClass({
             ref="episodeInput" placeholder="Episode" />
         </td>
         <td className="table-row-new-save">
-          <button className="table-row-new-save-button" onClick={this.handleSave}>Save</button>
+          <button className="table-row-new-save-button"
+            ref="saveButton"
+            onClick={this.handleSave}>
+            Save
+          </button>
         </td>
       </tr>
     );

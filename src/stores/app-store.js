@@ -5,40 +5,32 @@ var merge = require('react/lib/merge');
 
 var CHANGE_EVENT = 'change';
 
-var _shows = {
-  '0': {
-    id: '0',
-    title: 'Title-0',
-    episode: 0
-  },
-  '1': {
-    id: '1',
-    title: 'Title-1',
-    episode: 1
-  }
-}; //collection of my shows
+var _shows = [
+]; //collection of my shows
 
 /**
  * Create a Show item.
- * @param {title} The title of the Show
- * @param {episode} The episode of the Show
+ * @param {title} title The title of the Show
+ * @param {episode} episode The episode of the Show
  */
 function createShow(title, episode) {
   // maybe time is good enough of an id for now.
   var id = Date.now();
-  _shows[id] = {
+  _shows.push({
     id: id,
     title: title,
-    episode: episode
-  };
+    episode: parseInt(episode)
+  });
 }
 
 /**
  * Delete a Show item
- * @param {id} The id of the Show
+ * @param {id} id The id of the Show
  */
 function deleteShow(id) {
-  delete _shows[id];
+  _shows = _shows.filter(function (entry) {
+    return entry.id !== id;
+  });
 }
 
 var AppStore = merge(EventEmitter.prototype, {
