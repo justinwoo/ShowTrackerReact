@@ -3,6 +3,7 @@ var gutil = require('gulp-util');
 var rimraf = require('gulp-rimraf');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
+var karma = require('karma').server;
 
 var SRC = './src/**/*.js';
 var DIST = './dist';
@@ -52,6 +53,9 @@ gulp.task('clean', function (callback) {
 });
 
 gulp.task('watch', defaultTasks, function () {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  });
   gulp.watch(SRC, defaultTasks);
 });
 
