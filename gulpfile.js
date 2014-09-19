@@ -4,6 +4,7 @@ var rimraf = require('gulp-rimraf');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var karma = require('karma').server;
+var _ = require('lodash');
 
 var SRC = './src/**/*.js';
 var DIST = './dist';
@@ -22,6 +23,13 @@ var webpackHandler = function (name, callback) {
       throw new gutil.PluginError(name, err);
     }
     gutil.log(name, stats.toString({
+      hash: false,
+      timings: false,
+      assets: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false,
+      children: false,
       colors: true
     }));
     callback();
@@ -34,7 +42,11 @@ gulp.task('copy:vendor', function () {
 });
 
 gulp.task('build:webpack', function (callback) {
-  webpack(webpackConfig, webpackHandler('build:webpack', callback));
+  var config = _.merge({}, webpackConfig, {
+    devtool: 'source-map'
+  })
+
+  webpack(config, webpackHandler('build:webpack', callback));
 });
 
 gulp.task('build:tests', function (callback) {

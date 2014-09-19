@@ -7,6 +7,7 @@ var TableRowNew = React.createClass({
   handleSave: function () {
     var title = this.refs.titleInput.getDOMNode().value;
     var episode = this.refs.episodeInput.getDOMNode().value;
+    episode = parseInt(episode);
     AppActions.createShow(title, episode);
   },
 
