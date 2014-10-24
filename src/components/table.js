@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var React = require('react');
 var TableRow = require('./table-row');
+var TableRowEdit = require('./table-row-edit');
 var TableRowNew = require('./table-row-new');
 var AppStore = require('../stores/app-store');
 
@@ -34,7 +35,11 @@ var Table = React.createClass({
     var shows = this.state.shows;
     for (var key in shows) {
       var show = shows[key];
-      showComponents.push(<TableRow show={show}/>);
+      if (!show.editing) {
+        showComponents.push(<TableRow show={show}/>);
+      } else {
+        showComponents.push(<TableRowEdit show={show}/>);
+      }
     }
 
     return (

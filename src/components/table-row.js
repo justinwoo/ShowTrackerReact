@@ -16,18 +16,23 @@ var TableRow = React.createClass({
     AppActions.deleteShow(this.props.show.id);
   },
 
+  handleEdit: function () {
+    AppActions.toggleEditView(this.props.show.id);
+  },
+
   render: function () {
-    /*jshint ignore:start  */
     var show = this.props.show;
 
     return (
       <tr className="table-row">
         <td className="show-title">{show.title}</td>
         <td className="show-episode">{show.episode}</td>
-        <td className="show-delete"><button onClick={this.handleDelete}>Delete</button></td>
+        <td className="show-action">
+          <button onClick={this.handleEdit}>Edit</button>
+          <button onClick={this.handleDelete}>Delete</button>
+        </td>
       </tr>
     );
-    /*jshint ignore:end  */
   }
 });
 

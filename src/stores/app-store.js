@@ -5,8 +5,7 @@ var merge = require('react/lib/merge');
 
 var CHANGE_EVENT = 'change';
 
-var _shows = [
-]; //collection of my shows
+var _shows = []; //collection of my shows
 
 /**
  * Create a Show item.
@@ -19,7 +18,8 @@ function createShow(title, episode) {
   _shows.push({
     id: id,
     title: title,
-    episode: parseInt(episode)
+    episode: episode,
+    editing: false
   });
 }
 
@@ -30,6 +30,40 @@ function createShow(title, episode) {
 function deleteShow(id) {
   _shows = _shows.filter(function (entry) {
     return entry.id !== id;
+  });
+}
+
+/**
+ * Update a Show item
+ * @param {id} id The id of the Show
+ */
+function updateShow(id, title, episode) {
+  _shows = _shows.map(function (entry) {
+    if (entry.id !== id) {
+      return entry;
+    } else {
+      var newShow = entry;
+      newShow.title = title;
+      newShow.episode = episode;
+      newShow.editing = false;
+      return newShow;
+    }
+  });
+}
+
+/**
+ * Toggle editing mode for a Show item
+ * @param {id} id The id of the Show
+ */
+function toggleEditView(id) {
+  _shows = _shows.map(function (entry) {
+    if (entry.id !== id) {
+      return entry;
+    } else {
+      var newShow = entry;
+      newShow.editing = !newShow.editing;
+      return newShow;
+    }
   });
 }
 
@@ -61,25 +95,41 @@ var AppStore = merge(EventEmitter.prototype, {
     return _shows;
   },
 
+  /**
+   * Set the shows object
+   * @param {array} newShows
+   */
+  setShows: function (newShows) {
+    _shows = newShows;
+  },
+
   dispatcherIndex: AppDispatcher.register(function(payload) {
     var action = payload.action;
 
     switch(action.actionType) {
-    case AppConstants.SHOW_CREATE:
+      case AppConstants.SHOW_CREATE: {
         createShow(action.title, action.episode);
         AppStore.emitChange();
         break;
+      }
 
-      case AppConstants.SHOW_DELETE:
+      case AppConstants.SHOW_DELETE: {
         deleteShow(action.id);
         AppStore.emitChange();
         break;
+      }
 
-      case AppConstants.SHOW_UPDATE:
+      case AppConstants.SHOW_UPDATE: {
+        updateShow(action.id, action.title, action.episode);
         AppStore.emitChange();
         break;
+      }
 
-      // add more cases for other actionTypes, like TODO_UPDATE, etc.
+      case AppConstants.TOGGLE_EDIT_VIEW: {
+        toggleEditView(action.id);
+        AppStore.emitChange();
+        break;
+      }
     }
 
     return true; // No errors. Needed by promise in Dispatcher.

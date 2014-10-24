@@ -8,6 +8,8 @@ var tableRowNew;
 
 describe('TableRowNew', function () {
   beforeEach(function () {
+    // clear the app store so we know what to expect
+    AppStore.setShows([]);
     tableRowNew = TestUtils.renderIntoDocument(
       <TableRowNew/>
     );
