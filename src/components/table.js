@@ -4,17 +4,15 @@ var TableRowEdit = require('./TableRowEdit');
 var TableRowNew = require('./TableRowNew');
 
 var Table = React.createClass({
-
   render: function () {
-    /*jshint ignore:start  */
     var showComponents = [];
     var shows = this.props.shows;
     for (var key in shows) {
       var show = shows[key];
       if (!show.editing) {
-        showComponents.push(<TableRow show={show}/>);
+        showComponents.push(<TableRow key={key} show={show}/>);
       } else {
-        showComponents.push(<TableRowEdit show={show}/>);
+        showComponents.push(<TableRowEdit key={key} show={show}/>);
       }
     }
 
@@ -35,7 +33,6 @@ var Table = React.createClass({
         </tfoot>
       </table>
     );
-    /*jshint ignore:end  */
   }
 });
 

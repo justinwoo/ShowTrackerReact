@@ -20,7 +20,6 @@ var App = React.createClass({
   },
 
   render: function () {
-    /*jshint ignore:start  */
     return (
       <div>
         <h2>Show Tracker</h2>
@@ -29,7 +28,6 @@ var App = React.createClass({
         />
       </div>
     );
-    /*jshint ignore:end  */
   }
 
 

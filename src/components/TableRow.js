@@ -1,7 +1,9 @@
 var React = require('react');
 var AppActions = require('../actions/AppActions');
+var ReactComponentWithPureRenderMixin = require('react/lib/ReactComponentWithPureRenderMixin');
 
 var TableRow = React.createClass({
+  mixins: [ReactComponentWithPureRenderMixin],
 
   propTypes: {
     show: React.PropTypes.shape({
