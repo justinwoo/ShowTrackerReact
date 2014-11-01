@@ -28,11 +28,11 @@ var TableRowEdit = React.createClass({
       <tr className="table-row-edit">
         <td className="table-row-edit-title">
           <input type="text" className="table-row-edit-title-input"
-            ref="titleInput" placeholder={this.props.show.title} />
+            ref="titleInput" defaultValue={this.props.show.title} />
         </td>
         <td className="table-row-edit-episode">
           <input type="number" className="table-row-edit-episode-input"
-            ref="episodeInput" placeholder={this.props.show.episode} />
+            ref="episodeInput" defaultValue={this.props.show.episode} />
         </td>
         <td className="table-row-update">
           <button className="table-row-update-button"
