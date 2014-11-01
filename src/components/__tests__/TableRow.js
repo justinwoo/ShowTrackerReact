@@ -1,6 +1,7 @@
+jest.dontMock('../TableRow');
 var React = require('react/addons');
 var TestUtils = require('react/addons').addons.TestUtils;
-var TableRow = require('../TableRow.js');
+var TableRow = require('../TableRow');
 
 var tableRow;
 

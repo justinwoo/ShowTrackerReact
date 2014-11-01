@@ -1,22 +1,19 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.config.js');
-var karma = require('karma').server;
 var _ = require('lodash');
+var jest = require('jest-cli');
+var chalk = require('chalk');
+
+var webpackConfig = require('./webpack.config.js');
 
 var SRC = './src/**/*.js';
 var DIST = './dist';
 var DIST_JS = './dist/js';
-var TEST_MAIN = './src/__tests__/main.js';
-var TEST_OUTPUT = {
-  path: './test',
-  filename: 'main.js'
-};
 
-var defaultTasks = ['build'];
+var defaultTasks = ['build', 'test'];
 
-var webpackHandler = function (name, callback) {
+function webpackHandler (name, callback) {
   return function (err, stats) {
     if (err) {
       throw new gutil.PluginError(name, err);
@@ -35,35 +32,31 @@ var webpackHandler = function (name, callback) {
   }
 };
 
-gulp.task('copy:vendor', function () {
-  gulp.src('./node_modules/es5-shim/es5-shim.min.js')
-  .pipe(gulp.dest(DIST_JS));
-});
-
 gulp.task('build:webpack', function (callback) {
-  var config = _.merge({}, webpackConfig, {
+  var config = _.assign({}, webpackConfig, {
     devtool: 'source-map'
   })
 
   webpack(config, webpackHandler('build:webpack', callback));
 });
 
-gulp.task('build:tests', function (callback) {
-  var testConfig = Object.create(webpackConfig);
-  testConfig.entry = TEST_MAIN;
-  testConfig.output = TEST_OUTPUT;
-  webpack(testConfig, webpackHandler('build:tests', callback));
-});
-
-gulp.task('copy', ['copy:vendor']);
-
-gulp.task('build', ['copy', 'build:webpack', 'build:tests']);
+gulp.task('build', ['build:webpack']);
 
 gulp.task('watch', defaultTasks, function () {
-  karma.start({
-    configFile: __dirname + '/karma.conf.js'
-  });
   gulp.watch(SRC, defaultTasks);
 });
+
+gulp.task('test:jest', function (callback) {
+  var onComplete = function (result) {
+    if (result) {
+      callback();
+    } else {
+      throw new gutil.PluginError('test:jest', chalk.red('Jest tests failed'));
+    }
+  }
+  jest.runCLI({}, __dirname, onComplete);
+});
+
+gulp.task('test', ['test:jest']);
 
 gulp.task('default', defaultTasks);

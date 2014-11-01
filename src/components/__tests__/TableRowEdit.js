@@ -1,6 +1,9 @@
+jest.dontMock('../TableRowEdit');
+jest.dontMock('../../stores/AppStore');
+jest.dontMock('./fixtures/InitialState');
 var React = require('react/addons');
 var TestUtils = require('react/addons').addons.TestUtils;
-var TableRowEdit = require('../TableRowEdit.js');
+var TableRowEdit = require('../TableRowEdit');
 var AppStore = require('../../stores/AppStore');
 var InitialState = require('./fixtures/InitialState');
 var assign = require('react/lib/Object.assign');

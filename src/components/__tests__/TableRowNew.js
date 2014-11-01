@@ -1,6 +1,8 @@
+jest.dontMock('../TableRowNew');
+jest.dontMock('../../stores/AppStore');
 var React = require('react/addons');
 var TestUtils = require('react/addons').addons.TestUtils;
-var TableRowNew = require('../TableRowNew.js');
+var TableRowNew = require('../TableRowNew');
 var AppStore = require('../../stores/AppStore');
 var InitialState = require('./fixtures/InitialState');
 
