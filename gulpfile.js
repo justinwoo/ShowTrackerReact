@@ -49,10 +49,10 @@ gulp.task('watch', defaultTasks, function () {
 gulp.task('test:jest', function (callback) {
   var onComplete = function (result) {
     if (result) {
-      callback();
     } else {
-      throw new gutil.PluginError('test:jest', chalk.red('Jest tests failed'));
+      console.log(chalk.bgRed('!!! Jest tests failed! You should fix them soon. !!!'));
     }
+    callback();
   }
   jest.runCLI({}, __dirname, onComplete);
 });
