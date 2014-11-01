@@ -1,11 +1,12 @@
-var AppDispatcher = require('../dispatcher/app-dispatcher');
+var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var AppConstants = require('../constants/app-constants');
-var merge = require('react/lib/merge');
+var AppConstants = require('../constants/AppConstants');
+var InitialState = require('../state/InitialState.js');
+var assign = require('react/lib/Object.assign');
 
 var CHANGE_EVENT = 'change';
 
-var _shows = []; //collection of my shows
+var _appState = InitialState;
 
 /**
  * Create a Show item.
@@ -15,7 +16,7 @@ var _shows = []; //collection of my shows
 function createShow(title, episode) {
   // maybe time is good enough of an id for now.
   var id = Date.now();
-  _shows.push({
+  _appState.shows.push({
     id: id,
     title: title,
     episode: episode,
@@ -28,7 +29,7 @@ function createShow(title, episode) {
  * @param {id} id The id of the Show
  */
 function deleteShow(id) {
-  _shows = _shows.filter(function (entry) {
+  _appState.shows = _appState.shows.filter(function (entry) {
     return entry.id !== id;
   });
 }
@@ -38,7 +39,7 @@ function deleteShow(id) {
  * @param {id} id The id of the Show
  */
 function updateShow(id, title, episode) {
-  _shows = _shows.map(function (entry) {
+  _appState.shows = _appState.shows.map(function (entry) {
     if (entry.id !== id) {
       return entry;
     } else {
@@ -56,7 +57,7 @@ function updateShow(id, title, episode) {
  * @param {id} id The id of the Show
  */
 function toggleEditView(id) {
-  _shows = _shows.map(function (entry) {
+  _appState.shows = _appState.shows.map(function (entry) {
     if (entry.id !== id) {
       return entry;
     } else {
@@ -67,7 +68,7 @@ function toggleEditView(id) {
   });
 }
 
-var AppStore = merge(EventEmitter.prototype, {
+var AppStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
     this.emit(CHANGE_EVENT);
@@ -88,19 +89,19 @@ var AppStore = merge(EventEmitter.prototype, {
   },
 
   /**
-   * Get all the shows.
-   * @return {object}
+   * Set the application state
+   * @param {object} appState the new appState
    */
-  getAll: function () {
-    return _shows;
+  setAppState: function (appState) {
+    _appState = appState;
   },
 
   /**
-   * Set the shows object
-   * @param {array} newShows
+   * Get the application state
+   * @return {object} application state
    */
-  setShows: function (newShows) {
-    _shows = newShows;
+  getAppState: function () {
+    return _appState;
   },
 
   dispatcherIndex: AppDispatcher.register(function(payload) {

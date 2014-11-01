@@ -1,5 +1,5 @@
-var AppDispatcher = require('../dispatcher/app-dispatcher');
-var AppConstants = require('../constants/app-constants');
+var AppDispatcher = require('../dispatcher/AppDispatcher');
+var AppConstants = require('../constants/AppConstants');
 
 var AppActions = {
   createShow: function (title, episode) {

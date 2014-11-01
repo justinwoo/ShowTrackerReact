@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var rimraf = require('gulp-rimraf');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var karma = require('karma').server;
@@ -59,10 +58,6 @@ gulp.task('build:tests', function (callback) {
 gulp.task('copy', ['copy:vendor']);
 
 gulp.task('build', ['copy', 'build:webpack', 'build:tests']);
-
-gulp.task('clean', function (callback) {
-  rimraf(DIST, callback);
-});
 
 gulp.task('watch', defaultTasks, function () {
   karma.start({

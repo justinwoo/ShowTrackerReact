@@ -1,38 +1,14 @@
-/** @jsx React.DOM */
 var React = require('react');
-var TableRow = require('./table-row');
-var TableRowEdit = require('./table-row-edit');
-var TableRowNew = require('./table-row-new');
-var AppStore = require('../stores/app-store');
-
-function getAppState() {
-  return {
-    shows: AppStore.getAll()
-  };
-}
+var TableRow = require('./TableRow');
+var TableRowEdit = require('./TableRowEdit');
+var TableRowNew = require('./TableRowNew');
 
 var Table = React.createClass({
-
-  getInitialState: function() {
-    return getAppState();
-  },
-
-  componentDidMount: function() {
-    AppStore.addChangeListener(this._onChange);
-  },
-
-  componentWillUnmount: function() {
-    AppStore.removeChangeListener(this._onChange);
-  },
-
-  _onChange: function () {
-    this.setState(getAppState());
-  },
 
   render: function () {
     /*jshint ignore:start  */
     var showComponents = [];
-    var shows = this.state.shows;
+    var shows = this.props.shows;
     for (var key in shows) {
       var show = shows[key];
       if (!show.editing) {

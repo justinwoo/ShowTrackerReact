@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var App = require('./components/app');
-var AppActions = require('./actions/app-actions');
+var AppActions = require('./actions/AppActions');
 
 React.renderComponent(App(), document.getElementById('main'));
 

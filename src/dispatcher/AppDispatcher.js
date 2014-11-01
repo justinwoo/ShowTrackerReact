@@ -1,7 +1,7 @@
-var copyProperties = require('react/lib/copyProperties');
+var assign = require('react/lib/Object.assign');
 var Dispatcher = require('flux').Dispatcher;
 
-var AppDispatcher = copyProperties(new Dispatcher, {
+var AppDispatcher = assign(new Dispatcher, {
 
   /**
    * A bridge function between the views and the dispatcher, marking the action
